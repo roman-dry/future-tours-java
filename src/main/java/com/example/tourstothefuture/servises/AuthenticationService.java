@@ -43,16 +43,18 @@ public class AuthenticationService {
             userRepository.save(adminUser);
             var jwtToken = jwtService.generateToken(adminUser);
             saveUserToken(adminUser, jwtToken);
+            String message ="success";
 
-            return new AuthenticationResponse(jwtToken, adminUser);
+            return new AuthenticationResponse(message, jwtToken, adminUser);
         } else {
             // Створюємо звичайного користувача
             var user = UserFactory.createUser(UserRole.CUSTOMER, request.getName(), request.getEmail(), passwordEncoder.encode(request.getPassword()));
             userRepository.save(user);
             var jwtToken = jwtService.generateToken(user);
             saveUserToken(user, jwtToken);
+            String message ="success";
 
-            return new AuthenticationResponse(jwtToken, user);
+            return new AuthenticationResponse(message, jwtToken, user);
         }
     }
 
@@ -68,8 +70,9 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
+        String message ="success";
 
-        return new AuthenticationResponse(jwtToken, user);
+        return new AuthenticationResponse(message, jwtToken, user);
     }
 
 
