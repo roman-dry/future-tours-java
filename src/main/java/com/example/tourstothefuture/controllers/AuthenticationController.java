@@ -57,9 +57,11 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody LoginRequest request
+            @RequestParam String email,
+            @RequestParam String password
     ) {
-        return ResponseEntity.ok(service.login(request));
+        LoginRequest loginRequest = new LoginRequest(email, password);
+        return ResponseEntity.ok(service.login(loginRequest));
     }
 
     @PostMapping("/logout")
