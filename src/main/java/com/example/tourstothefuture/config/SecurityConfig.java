@@ -29,7 +29,7 @@ public class SecurityConfig {
                     httpSecurityHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable);
                 })
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/api/auth/**", "/", "/h2-console/**")
+                        .requestMatchers("/api/auth/**", "/", "/h2-console/**", "/card")
                         .permitAll()
                         .anyRequest()
                         .authenticated())

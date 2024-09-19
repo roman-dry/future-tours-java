@@ -12,5 +12,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/auth/**");
         registry.addMapping("/h2-console/**");
+        registry.addMapping("/card/**");
     }
 }
